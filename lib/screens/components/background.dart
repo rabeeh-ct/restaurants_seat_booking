@@ -7,7 +7,6 @@ class Background extends StatelessWidget {
     Key? key,
     required this.child,
   }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,17 +16,19 @@ class Background extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          Positioned(
+          AnimatedPositioned(
+            duration: Duration(milliseconds: 500),
+
             top: size.width * .1,
             left: 0,
             child: Image.asset('assets/images/food_top.png'),
-            width: size.width * 0.4,
+            width: size.width * 0.6,
           ),
           Positioned(
             right: 0,
             bottom: 0,
             child: Image.asset('assets/images/food_bottom.png'),
-            width: size.width * .5,
+            width: size.width * .7,
           ),
           Positioned(
               top: size.width*.4,

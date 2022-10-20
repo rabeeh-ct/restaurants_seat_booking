@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:restaurant_seat_booking/reusable_widgets/usable_textfield.dart';
 import 'package:restaurant_seat_booking/screens/signUpScreen.dart';
-import '../reusable_widgets/usable_textfield.dart';
+import '../reusable_widgets/usable_textfield2.dart';
 import 'components/background.dart';
 
 class SignInScreen extends StatelessWidget {
