@@ -1,11 +1,25 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:restaurant_seat_booking/screens/sign_in_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:restaurant_seat_booking/screens/hotel_sign_in_screen.dart';
+import 'package:restaurant_seat_booking/screens/login_screen.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final theimage=Image.asset('assets/images/food_main.jpg');
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    precacheImage(theimage.image,context);
+    super.didChangeDependencies();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,9 +31,7 @@ class HomePage extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.fitHeight,
-            image: AssetImage(
-              'assets/images/food_main.jpg',
-            ),
+            image: theimage.image
           ),
         ),
         child: Column(
@@ -50,27 +62,41 @@ class HomePage extends StatelessWidget {
             Center(
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
+                  Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => SignInScreen(),
+                        builder: (context) => LoginScreen(),
                       ));
                 },
                 child: Container(
-                  width: size.width * .8,
-                  height: size.height * 0.08,
+                  width: size.width * .75,
+                  height: size.height * .07,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: Colors.white30,
+                    gradient: LinearGradient(
+                      colors: [
+                        Colors.green.shade800,
+                        Colors.yellow,
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(30),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black54,
+                        offset: Offset(4, 4),
+                        blurRadius: 10,
+                        spreadRadius: 1,
+                      ),
+                    ],
                   ),
                   child: Center(
-                      child: Text(
-                    'Food Booking',
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold),
-                  )),
+                    child: Text(
+                      'Food Booking',
+                      style: GoogleFonts.exo2(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 25),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -78,13 +104,19 @@ class HomePage extends StatelessWidget {
               height: size.height * .4,
             ),
             Center(
-              child: GestureDetector(onTap: () {
-
-              },
-                child: Text(
-                  'for Hotel Registration',
-                  style:
-                      TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+              child: GestureDetector(
+                onTap: () {},
+                child: GestureDetector(
+                  child: Text(
+                    'for Hotel Registration',
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w500),
+                  ),
+                  onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => HotelSignInScreen(),
+                      )),
                 ),
               ),
             ),

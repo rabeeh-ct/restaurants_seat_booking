@@ -1,6 +1,11 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:restaurant_seat_booking/constants/constants.dart';
 import 'package:restaurant_seat_booking/models/hotel_model.dart';
+import 'package:restaurant_seat_booking/reusable_widgets/restaurent_list.dart';
+import 'package:restaurant_seat_booking/reusable_widgets/search_field.dart';
+import 'package:restaurant_seat_booking/screens/home_page.dart';
 import 'package:searchfield/searchfield.dart';
 
 class MainHomePage extends StatefulWidget {
@@ -12,92 +17,116 @@ class MainHomePage extends StatefulWidget {
 
 class _MainHomePageState extends State<MainHomePage> {
   @override
+  var hName;
+
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Column(crossAxisAlignment: CrossAxisAlignment.start,
+      body: Stack(
         children: [
           Container(
             width: size.width,
-            height: size.height * .15,
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-            ),
-            child: Column(
-              children: [
-                Expanded(
-                  child: Container(),
+            height: size.height,
+            decoration: BoxDecoration(),
+          ),
+          Align(
+            alignment: Alignment(-0.96, -0.9),
+            child: Container(
+              width: size.width * .1,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                gradient: LinearGradient(
+                  colors: [Colors.blueGrey.shade900, Colors.indigo.shade400],
                 ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 8.0, right: 8, bottom: 2),
-                  child: Container(
-                    child: SearchField<HotelModel>(
-                      searchStyle: TextStyle(
-                        fontSize: 15,
-                      ),
-                      searchInputDecoration: InputDecoration(
-                        contentPadding: EdgeInsets.zero,
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                          ),
-                        ),
-                        prefixIcon: Icon(
-                          Icons.search,
-                          color: Colors.black,
-                        ),
-                        hintText: 'Search Hotel',
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(15),
-                          borderSide: BorderSide(
-                            color: Colors.black,
-                          ),
-                        ),
-                      ),
-                      suggestions: Constants.res
-                          .map(
-                            (e) => SearchFieldListItem(
-                                child: Padding(
-                                  padding: EdgeInsets.only(left: 8),
-                                  child: Text(e.hotelName),
-                                ),
-                                e.hotelName,
-                                item: e),
-                          )
-                          .toList(),
-                    ),
-                  ),
+              ),
+              child: IconButton(
+                onPressed: () => Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomePage(),
+                    )),
+                icon: Icon(
+                  Icons.arrow_back_ios_new,
+                  color: Colors.white,
                 ),
-              ],
+              ),
             ),
           ),
-          Expanded(
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: size.height * .02),
-              Center(
-                child: Text('Top Picks',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15)),
+              SizedBox(
+                height: size.height * .1,
               ),
-              Card(
-                color: Colors.blue,
-                child: Stack(
-                  children: [
-                    Container(
-                      height: size.width*.5,
-                      width: size.width*.5,
-                      child: Image.network('https://scontent.fcok10-1.fna.fbcdn.net/v/t39.30808-6/250970106_639415157439911_1812823761543078750_n.jpg?stp=dst-jpg_s960x960&_nc_cat=105&ccb=1-7&_nc_sid=e3f864&_nc_ohc=Nd3fK9qPnj0AX8ol9eU&_nc_ht=scontent.fcok10-1.fna&oh=00_AT-dfN8xenX2zwSML-UdnHyPVq3Hpasllkebm7e8cB5RCQ&oe=6355230C'),
-                    ),
-                  ],
+              Container(
+                height: size.height * .08,
+                width: size.width,
+                color: Colors.indigo,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: size.width * .06),
+                child: Text(
+                  'Find the best Restaurent in \nyour city',
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
                 ),
-              )
+              ),
+              Container(
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: size.width * .06,
+                      right: size.width * .06,
+                      top: size.width * .04,
+                      bottom: size.width * .04),
+                  child: RestaurentSearchField(),
+                ),
+              ),
+              Center(
+                child: Text(
+                  'TOP PICKS',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+              ),
+              SizedBox(height: size.height*.01,),
+              Expanded(
+                child: MediaQuery.removePadding(
+                  context: context,
+                  removeTop: true,
+                  child: ListView.separated(
+                      itemBuilder: (context, index) {
+                        fn();
+                        return RestaurentList(
+                          size: size,
+                          hotelName: hName[index][0],
+                          rating: hName[index][1],
+                          location: hName[index][2],
+                          foods: hName[index][3],
+                          hotelimage: hName[index][4],
+                        );
+                      },
+                      separatorBuilder: (context, index) {
+                        return Divider();
+                      },
+                      itemCount: Constants.res.length),
+                ),
+              ),
             ],
-          ))
+          ),
         ],
       ),
     );
+  }
+
+  var temp;
+  var foodName;
+
+  fn() {
+    hName = Constants.res.map((e) {
+      print('-------');
+      foodName=e.foodList.map((e) => e.foodName);
+      temp = [e.hotelName, e.hotelRating, e.location, foodName,e.hotelImage];
+      print(foodName);
+      return temp;
+    }).toList();
   }
 }
