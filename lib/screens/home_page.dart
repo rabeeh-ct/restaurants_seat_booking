@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:restaurant_seat_booking/screens/hotel_sign_in_screen.dart';
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
     precacheImage(theimage.image,context);
     super.didChangeDependencies();
   }
+  List texts=['Hungry...','Hungry...'];
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -47,13 +49,23 @@ class _HomePageState extends State<HomePage> {
                 style: TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
-            Center(
-              child: Text(
-                'Hungry...',
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 50,
-                    fontWeight: FontWeight.bold),
+            SizedBox(width: double.infinity,
+              height: size.height*.0675,
+              child: Center(
+                child: AnimatedTextKit(
+                  animatedTexts: [
+                    for (final txt in texts)
+                      RotateAnimatedText(
+                        txt,
+                        textStyle: TextStyle(
+                            color: Colors.white,
+                            fontSize: 50,
+                            fontWeight: FontWeight.bold),
+                        textAlign: TextAlign.start,
+                      ),
+                  ],
+                  repeatForever: true,
+                ),
               ),
             ),
             SizedBox(

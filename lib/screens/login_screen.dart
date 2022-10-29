@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
               SizedBox(height: size.height * .3),
               Text(
                 login == true ? 'Welcome Back' : 'Register',
-                style: GoogleFonts.kalam(
+                style: TextStyle(fontFamily: 'kalam',
                     color: Colors.white,
                     fontSize: 45,
                     fontWeight: FontWeight.w600),

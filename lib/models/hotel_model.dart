@@ -13,7 +13,7 @@ class HotelModel {
       {required this.hotelid,
       required this.hotelName,
       required this.hotelImage,
-        required this.location,
+      required this.location,
       required this.hotelRating,
       required this.foodList});
 }

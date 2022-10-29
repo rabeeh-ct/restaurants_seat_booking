@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -21,21 +23,46 @@ class RestaurentList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: size.width * .03, right: size.width * .03),
+      padding: EdgeInsets.only(
+          bottom: size.height * .01,
+          top: size.height * .01,
+          left: size.width * .03,
+          right: size.width * .03),
       child: Container(
         width: size.width * .8,
-        height: size.height * .2,
+        height: size.height * .19,
         decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Colors.blueGrey.shade900, Colors.indigo.shade400]),
-            borderRadius: BorderRadius.circular(10)),
+          color: Colors.blueGrey[200],
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade500,
+              spreadRadius: 1,
+              blurRadius: 15.0,
+              offset: Offset(4, 4),
+            ),
+            BoxShadow(
+              color: Colors.white,
+              spreadRadius: 1,
+              blurRadius: 15.0,
+              offset: Offset(-4, -4),
+            ),
+          ],
+        ),
         child: Row(
           children: [
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(hotelimage,fit: BoxFit.fill,)),
+                borderRadius: BorderRadius.circular(10),
+                child: Hero(
+                  tag: hotelName,
+                  child: Image.asset(
+                    hotelimage,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
             ),
             Expanded(
               child: Column(
@@ -45,8 +72,11 @@ class RestaurentList extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.only(top: size.height * .015),
                       child: Text(
-                        hotelName,
-                        style: TextStyle(fontSize: 20, color: Colors.white),
+                        hotelName.toUpperCase(),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontWeight: FontWeight.w500),
                       ),
                     ),
                   ),
@@ -71,7 +101,7 @@ class RestaurentList extends StatelessWidget {
                             rating.toString(),
                             style: TextStyle(
                               fontSize: 15,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -85,7 +115,7 @@ class RestaurentList extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.location_on,
-                          color: Colors.white,
+                          color: Colors.black,
                           size: 20,
                         ),
                         Padding(
@@ -94,7 +124,7 @@ class RestaurentList extends StatelessWidget {
                             '$location, Kerala',
                             style: TextStyle(
                               fontSize: 18,
-                              color: Colors.white,
+                              color: Colors.black,
                             ),
                           ),
                         ),
@@ -104,8 +134,10 @@ class RestaurentList extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(
                         top: size.height * .012, left: size.height * .005),
-                    child: Text('$foods',
-                        style: TextStyle(fontSize: 15, color: Colors.white)),
+                    child: Text(
+                      '$foods',
+                      style: TextStyle(fontSize: 15, color: Colors.black),
+                    ),
                   )
                 ],
               ),

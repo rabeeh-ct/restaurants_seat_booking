@@ -19,8 +19,8 @@ class UsableButton extends StatelessWidget {
           ],
         ),
         borderRadius: BorderRadius.circular(30),
-        boxShadow: [
-          BoxShadow(
+        boxShadow: const [
+           BoxShadow(
             color: Colors.black54,
             offset: Offset(4, 4),
             blurRadius: 10,
@@ -31,9 +31,9 @@ class UsableButton extends StatelessWidget {
       child: Center(
         child: Text(
           buttonText,
-          style: GoogleFonts.exo2(
+          style: const TextStyle(fontFamily: 'exo2',
               color: Colors.white70,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w900,
               fontSize: 25),
         ),
       ),
