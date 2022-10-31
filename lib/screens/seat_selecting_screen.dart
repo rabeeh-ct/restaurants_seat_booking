@@ -2,9 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:restaurant_seat_booking/constants/constants.dart';
 import 'package:restaurant_seat_booking/reusable_widgets/reusable%20backbutton.dart';
 import 'package:restaurant_seat_booking/reusable_widgets/table_and_four_seats.dart';
 import 'package:restaurant_seat_booking/reusable_widgets/table_and_six_seats.dart';
+import 'package:restaurant_seat_booking/screens/food_selecting_screen.dart';
+import 'package:restaurant_seat_booking/screens/home_page.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class SeatSelectingScreen extends StatefulWidget {
   SeatSelectingScreen({
@@ -26,12 +30,15 @@ class SeatSelectingScreen extends StatefulWidget {
 }
 
 class _SeatSelectingScreenState extends State<SeatSelectingScreen> {
+  PageController _pgController = PageController();
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return Scaffold(backgroundColor: Colors.grey[100],
+    return Scaffold(
+      backgroundColor: Colors.grey[100],
       appBar: AppBar(
-        leading: ReusableBackButton(),
+        iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
         title: Text(
           widget.hotelName.toUpperCase(),
@@ -40,18 +47,17 @@ class _SeatSelectingScreenState extends State<SeatSelectingScreen> {
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
-      body: SizedBox(width: double.infinity,height: double.infinity,
-        child: ListView(
-          children: [
-            Container(
-              height: size.height * .6,
-              width: size.width,
-              // color: Colors.blue,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: Stack(
+        children: [
+          PageView(
+            controller: _pgController,
+            children: [
+              Column(
                 children: [
                   Container(
                     height: size.height * .4,
+                    width: size.width,
+                    // color: Colors.blue,
                     child: Stack(
                       children: [
                         Hero(
@@ -81,47 +87,83 @@ class _SeatSelectingScreenState extends State<SeatSelectingScreen> {
                       ],
                     ),
                   ),
+                  SizedBox(height: size.height * .43),
+                  Container(
+                    child: Text('Swipe Left',
+                        style: TextStyle(fontWeight: FontWeight.w500)),
+                  )
                 ],
+              ),
+              Container(
+                color: Colors.grey[200],
+                height: size.height,
+                width: double.infinity,
+                child: Stack(
+                  children: [
+                    Positioned(
+                      top: size.height * .015,
+                      left: size.width * .09,
+                      child: TableAndFourSeats(tableNumber: '101'),
+                    ),
+                    Positioned(
+                      top: size.height * .015,
+                      right: size.width * .08,
+                      child: TableAndFourSeats(tableNumber: '102'),
+                    ),
+                    Positioned(
+                      bottom: size.height * .35,
+                      right: size.width * .3,
+                      child: TableAndSixSeats(tableNumber: '103'),
+                    ),
+                    Positioned(
+                      bottom: size.height * .08,
+                      left: size.width * .09,
+                      child: TableAndFourSeats(tableNumber: '104'),
+                    ),
+                    Positioned(
+                      bottom: size.height * .08,
+                      right: size.width * .08,
+                      child: TableAndFourSeats(tableNumber: '105'),
+                    ),
+                  ],
+                ),
+              )
+            ],
+          ),
+          Container(
+            alignment: Alignment(0, 0.9),
+            child: SmoothPageIndicator(
+              controller: _pgController,
+              count: 2,
+            ),
+          ),
+          Container(
+            alignment: Alignment(0.9, 0.94),
+            child: Container(
+              width: 50,
+              height: 25,
+              decoration: BoxDecoration(
+                  color: Colors.blue[200],
+                  borderRadius: BorderRadius.circular(4),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black54,
+                      offset: Offset(4, 4),
+                      blurRadius: 8,
+                      spreadRadius: 1,
+                    ),
+                  ]),
+              child: Center(
+                child: GestureDetector(onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => FoodSelectingScreen(),)),
+                  child: Text(
+                    'NEXT',
+                    style: TextStyle(fontWeight: FontWeight.w400),
+                  ),
+                ),
               ),
             ),
-            Container(
-              height: size.height*.6,
-              width: double.infinity,
-              child: Stack(
-                children: [
-                  Positioned(
-                    top: size.height * .01,
-                    left: 1,
-                    child: TableAndFourSeats(),
-                  ),
-                  Positioned(
-                    bottom: size.height * .01,
-                    child: TableAndFourSeats(),
-                  ),
-                  // Positioned(
-                  //   bottom: size.height * .159,
-                  //   left: 1,
-                  //   child: TableAndFourSeats(),
-                  // ),
-                  Positioned(
-                    top: size.height * .06,
-                    left: size.width * .5,
-                    child: Transform.rotate(
-                        angle: pi / 2, child: TableAndSixSeats()),
-                  ),
-                  Positioned(
-                    top: size.height * .3,
-                    left: size.width * .55,
-                    child: Transform.rotate(
-                      angle: pi / 2,
-                      child: TableAndSixSeats(),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

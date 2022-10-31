@@ -4,39 +4,70 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_seat_booking/reusable_widgets/seat.dart';
 
 class TableAndSixSeats extends StatelessWidget {
-  const TableAndSixSeats({Key? key}) : super(key: key);
+  String tableNumber;
+
+   TableAndSixSeats({Key? key,required this.tableNumber}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    Size size=MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child:Transform.rotate(angle: pi/2,
-        child: SizedBox(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+    Size size = MediaQuery.of(context).size;
+    return SizedBox(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Transform.rotate(
+            angle: pi * .5,
+            child: Seat(),
+          ),
+          Row(
             children: [
-              Row(
-                children: [Seat(), Seat(),Seat()],
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(8),
-                  color: Colors.grey[700],
+              Column(children: [
+                Seat(),
+                SizedBox(
+                  height: 16,
                 ),
-                width: size.width * .405,
-                height: size.height * .07,
-              ),
-              Transform.rotate(
-                angle: pi,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [Seat(), Seat(),Seat()],
+                Seat(),
+              ]),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 11.0),
+                child: Container(
+                  child: Center(child: Text(tableNumber)),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(4),
+                    color: Colors.white,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black38,
+                        offset: Offset(4, 4),
+                        blurRadius: 5,
+                        spreadRadius: 1,
+                      ),
+                      // BoxShadow(
+                      //   color: Colors.white,
+                      //   offset: Offset(-4, -4),
+                      //   blurRadius: 10,
+                      //   spreadRadius: 1,
+                      // ),
+                    ],
+                  ),
+                  width: 100,
+                  height: 120,
                 ),
               ),
+              Column(children: [
+                Seat(),
+                SizedBox(
+                  height: 16,
+                ),
+                Seat(),
+              ]),
             ],
           ),
-        ),
+          Transform.rotate(
+            angle: pi * .5,
+            child: Seat(),
+          ),
+        ],
       ),
     );
   }

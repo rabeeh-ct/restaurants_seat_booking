@@ -41,6 +41,8 @@ dependencies:
   searchfield: ^0.7.1
   flutter_rating_bar: ^4.0.1
   animated_text_kit: ^4.2.2
+  swipable_stack: ^2.0.0
+  smooth_page_indicator: ^1.0.0+2
 
 
 dev_dependencies:

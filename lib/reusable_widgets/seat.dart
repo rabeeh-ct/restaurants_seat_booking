@@ -1,28 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_seat_booking/constants/constants.dart';
 
 class Seat extends StatefulWidget {
-   Seat({Key? key}) : super(key: key);
+  Seat({Key? key}) : super(key: key);
 
   @override
   State<Seat> createState() => _SeatState();
 }
 
 class _SeatState extends State<Seat> {
-  bool flag=false;
+  bool flag = true;
 
   @override
   Widget build(BuildContext context) {
-      return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 11.0),
-        child: InkWell(onTap: () => setState(() {
-          flag=!flag;
-        }),
-          child: Icon(
-            Icons.chair,
-            size: 30,
-            color: flag==false?Colors.grey[700]:Colors.green.shade600,
-          ),
-        ),
-      );
+    return InkWell(
+      onTap: () => setState(() {
+        flag = !flag;
+        Constants.Counter++;
+      }),
+      child: Container(
+          width: 10,
+          height: 50,
+          decoration: BoxDecoration(
+            color:flag? Colors.white:Colors.yellow,
+            borderRadius: BorderRadius.circular(3),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black54,
+                offset: Offset(4, 4),
+                blurRadius: 10,
+                spreadRadius: 1,
+              ),
+            ],
+          ),)
+    );
   }
 }

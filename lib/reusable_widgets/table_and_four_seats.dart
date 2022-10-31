@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_seat_booking/reusable_widgets/seat.dart';
 
 class TableAndFourSeats extends StatefulWidget {
-  const TableAndFourSeats({Key? key}) : super(key: key);
+  TableAndFourSeats({Key? key, required this.tableNumber}) : super(key: key);
+  String tableNumber;
 
   @override
   State<TableAndFourSeats> createState() => _TableAndFourSeatsState();
@@ -17,26 +18,54 @@ class _TableAndFourSeatsState extends State<TableAndFourSeats> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: SizedBox(
-        child: Column(
+        child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
-              children: [Seat(), Seat()],
+            Column(
+              children: [
+                SizedBox(
+                  height: 13,
+                ),
+                Seat(),
+                SizedBox(
+                  height: 16,
+                ),
+                Seat()
+              ],
             ),
-            Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8),
-                color: Colors.grey[700],
+            Padding(
+              padding: const EdgeInsets.only(
+                  top: 11.0, bottom: 10, left: 11, right: 11),
+              child: Container(
+                child: Center(child: Text(widget.tableNumber)),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4),
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black38,
+                      offset: Offset(4, 4),
+                      blurRadius: 5,
+                      spreadRadius: 1,
+                    ),
+                  ],
+                ),
+                width: 75,
+                height: 120,
               ),
-              width: size.width * .27,
-              height: size.height * .07,
             ),
-            Transform.rotate(
-              angle: pi,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [Seat(), Seat()],
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                SizedBox(
+                  height: 13,
+                ),
+                Seat(),
+                SizedBox(
+                  height: 16,
+                ),
+                Seat()
+              ],
             ),
           ],
         ),
@@ -44,4 +73,3 @@ class _TableAndFourSeatsState extends State<TableAndFourSeats> {
     );
   }
 }
-

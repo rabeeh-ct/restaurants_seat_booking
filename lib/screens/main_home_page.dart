@@ -10,6 +10,8 @@ import 'package:restaurant_seat_booking/screens/home_page.dart';
 import 'package:restaurant_seat_booking/screens/seat_selecting_screen.dart';
 import 'package:searchfield/searchfield.dart';
 
+import '../temp_screen.dart';
+
 class MainHomePage extends StatefulWidget {
   const MainHomePage({Key? key}) : super(key: key);
 
