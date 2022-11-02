@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:restaurant_seat_booking/reusable_widgets/seat.dart';
 
 class TableAndFourSeats extends StatefulWidget {
-  TableAndFourSeats({Key? key, required this.tableNumber}) : super(key: key);
+  TableAndFourSeats({Key? key, required this.tableNumber,required this.reset}) : super(key: key);
   String tableNumber;
-
+Function? reset;
   @override
   State<TableAndFourSeats> createState() => _TableAndFourSeatsState();
 }
@@ -26,11 +26,11 @@ class _TableAndFourSeatsState extends State<TableAndFourSeats> {
                 SizedBox(
                   height: 13,
                 ),
-                Seat(),
+                Seat(reset: widget.reset,),
                 SizedBox(
                   height: 16,
                 ),
-                Seat()
+                Seat(reset: widget.reset,)
               ],
             ),
             Padding(
@@ -60,11 +60,11 @@ class _TableAndFourSeatsState extends State<TableAndFourSeats> {
                 SizedBox(
                   height: 13,
                 ),
-                Seat(),
+                Seat(reset: widget.reset,),
                 SizedBox(
                   height: 16,
                 ),
-                Seat()
+                Seat(reset: widget.reset,)
               ],
             ),
           ],

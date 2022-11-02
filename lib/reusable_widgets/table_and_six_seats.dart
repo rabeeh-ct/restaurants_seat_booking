@@ -6,8 +6,8 @@ import 'package:restaurant_seat_booking/reusable_widgets/seat.dart';
 class TableAndSixSeats extends StatelessWidget {
   String tableNumber;
 
-   TableAndSixSeats({Key? key,required this.tableNumber}) : super(key: key);
-
+   TableAndSixSeats({Key? key,required this.tableNumber,required this.reset}) : super(key: key);
+  Function? reset;
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -17,16 +17,16 @@ class TableAndSixSeats extends StatelessWidget {
         children: [
           Transform.rotate(
             angle: pi * .5,
-            child: Seat(),
+            child: Seat(reset: reset,),
           ),
           Row(
             children: [
               Column(children: [
-                Seat(),
+                Seat(reset: reset,),
                 SizedBox(
                   height: 16,
                 ),
-                Seat(),
+                Seat(reset: reset,),
               ]),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 11.0),
@@ -55,17 +55,17 @@ class TableAndSixSeats extends StatelessWidget {
                 ),
               ),
               Column(children: [
-                Seat(),
+                Seat(reset: reset,),
                 SizedBox(
                   height: 16,
                 ),
-                Seat(),
+                Seat(reset: reset,),
               ]),
             ],
           ),
           Transform.rotate(
             angle: pi * .5,
-            child: Seat(),
+            child: Seat(reset: reset,),
           ),
         ],
       ),

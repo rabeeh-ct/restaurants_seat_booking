@@ -39,7 +39,7 @@ class _LoginScreenState extends State<LoginScreen> {
               width: size.width * .6,
               height: size.height * .35,
               child: Lottie.network(
-                  'https://assets7.lottiefiles.com/packages/lf20_vkqybeu5/data.json'),
+                  'https://assets9.lottiefiles.com/packages/lf20_vkqybeu5/data.json'),
             ),
           ),
           Align(
