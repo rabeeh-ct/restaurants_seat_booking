@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_seat_booking/screens/home_page.dart';
-import 'package:restaurant_seat_booking/screens/main_home_page.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MainHomePage(),
+      home: const HomePage(),
     );
   }
 }

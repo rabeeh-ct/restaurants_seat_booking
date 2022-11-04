@@ -13,6 +13,7 @@ class _SeatState extends State<Seat> {
 
   @override
   Widget build(BuildContext context) {
+    Size size=MediaQuery.of(context).size;
     return InkWell(
       onTap: () => setState(() {
         _isSeatSelect = !_isSeatSelect;
@@ -21,8 +22,8 @@ widget.reset!();
         print(Constants.seatCounter);
       }),
       child: Container(
-          width: 10,
-          height: 50,
+          width: size.width/39.2727275,
+          height: size.height/16.0581818,
           decoration: BoxDecoration(
             color:_isSeatSelect? Colors.yellow:Colors.white,
             borderRadius: BorderRadius.circular(3),

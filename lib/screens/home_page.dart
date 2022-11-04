@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                         txt,
                         textStyle: TextStyle(
                             color: Colors.white,
-                            fontSize: 50,
+                            fontSize: size.height*.06,
                             fontWeight: FontWeight.bold),
                         textAlign: TextAlign.start,
                       ),
@@ -74,6 +74,7 @@ class _HomePageState extends State<HomePage> {
             Center(
               child: GestureDetector(
                 onTap: () {
+                  print('${size.width} width,${size.height} height');
                   Navigator.push(
                       context,
                       MaterialPageRoute(

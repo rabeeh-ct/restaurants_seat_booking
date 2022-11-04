@@ -2,15 +2,10 @@
 
 import 'package:flutter/material.dart';
 import 'package:restaurant_seat_booking/constants/constants.dart';
-import 'package:restaurant_seat_booking/models/hotel_model.dart';
 import 'package:restaurant_seat_booking/reusable_widgets/restaurent_list.dart';
 import 'package:restaurant_seat_booking/reusable_widgets/reusable%20backbutton.dart';
 import 'package:restaurant_seat_booking/reusable_widgets/search_field.dart';
-import 'package:restaurant_seat_booking/screens/home_page.dart';
 import 'package:restaurant_seat_booking/screens/seat_selecting_screen.dart';
-import 'package:searchfield/searchfield.dart';
-
-import '../temp_screen.dart';
 
 class MainHomePage extends StatefulWidget {
   const MainHomePage({Key? key}) : super(key: key);

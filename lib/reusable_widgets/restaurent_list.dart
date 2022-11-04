@@ -30,7 +30,7 @@ class RestaurentList extends StatelessWidget {
           right: size.width * .03),
       child: Container(
         width: size.width * .8,
-        height: size.height * .19,
+        height: size.height * .2,
         decoration: BoxDecoration(
           color: Colors.blueGrey[200],
           borderRadius: BorderRadius.circular(10),

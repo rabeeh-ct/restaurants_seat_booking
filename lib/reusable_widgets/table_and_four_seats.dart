@@ -16,7 +16,7 @@ class _TableAndFourSeatsState extends State<TableAndFourSeats> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding:  EdgeInsets.all(size.width/49.0909091),
       child: SizedBox(
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -24,18 +24,18 @@ class _TableAndFourSeatsState extends State<TableAndFourSeats> {
             Column(
               children: [
                 SizedBox(
-                  height: 13,
+                  height: size.height/61.7622378,
                 ),
                 Seat(reset: widget.reset,),
                 SizedBox(
-                  height: 16,
+                  height: size.height/50.1818182,
                 ),
                 Seat(reset: widget.reset,)
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(
-                  top: 11.0, bottom: 10, left: 11, right: 11),
+              padding:  EdgeInsets.only(
+                  top: size.height/72.9917355, bottom: size.height/80.2909091, left: size.width/35.7024793, right: size.width/35.7024793),
               child: Container(
                 child: Center(child: Text(widget.tableNumber)),
                 decoration: BoxDecoration(
@@ -50,19 +50,19 @@ class _TableAndFourSeatsState extends State<TableAndFourSeats> {
                     ),
                   ],
                 ),
-                width: 75,
-                height: 120,
+                width: size.width/5.23636364,
+                height: size.height/6.69090909,
               ),
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 SizedBox(
-                  height: 13,
+                  height:size.height/61.7622378,
                 ),
                 Seat(reset: widget.reset,),
                 SizedBox(
-                  height: 16,
+                  height: size.height/50.1818182,
                 ),
                 Seat(reset: widget.reset,)
               ],

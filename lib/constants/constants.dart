@@ -4,6 +4,7 @@ import 'package:restaurant_seat_booking/models/food_model.dart';
 import '../models/hotel_model.dart';
 
 class Constants {
+  static String baseUrl='http://';
   static int seatCounter=0;
   static List<HotelModel> res = [
     HotelModel(

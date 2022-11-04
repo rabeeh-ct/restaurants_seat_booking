@@ -24,12 +24,12 @@ class TableAndSixSeats extends StatelessWidget {
               Column(children: [
                 Seat(reset: reset,),
                 SizedBox(
-                  height: 16,
+                  height: size.height/50.1818181,
                 ),
                 Seat(reset: reset,),
               ]),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 11.0),
+                padding:  EdgeInsets.symmetric(horizontal: size.width/35.7024793),
                 child: Container(
                   child: Center(child: Text(tableNumber)),
                   decoration: BoxDecoration(
@@ -50,8 +50,8 @@ class TableAndSixSeats extends StatelessWidget {
                       // ),
                     ],
                   ),
-                  width: 100,
-                  height: 120,
+                  width: size.width/3.92727273,
+                  height: size.height/6.69090908,
                 ),
               ),
               Column(children: [
